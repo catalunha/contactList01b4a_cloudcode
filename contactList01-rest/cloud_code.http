@@ -1,0 +1,27 @@
+@urlBase = https://parseapi.back4app.com
+@urlObjects = /functions
+
+@XParseParseApplicationId = x4uHx8hJECtAPiKo4Z2f8IK9OUKRtcuUBBaUBHM9
+@XParseRESTAPIKey = frnySy1R0hur1GkJPIrxoN6ucSZxuH3wdQzyUMEO
+
+
+###
+# hello
+POST {{urlBase}}{{urlObjects}}/hello
+X-Parse-Application-Id: {{XParseParseApplicationId}}
+X-Parse-REST-API-Key: {{XParseRESTAPIKey}}
+Content-Type: application/json
+
+{}
+###
+###
+# create-contact
+POST {{urlBase}}{{urlObjects}}/create-contact
+X-Parse-Application-Id: {{XParseParseApplicationId}}
+X-Parse-REST-API-Key: {{XParseRESTAPIKey}}
+Content-Type: application/json
+
+{
+  "name":"name com function"
+}
+###

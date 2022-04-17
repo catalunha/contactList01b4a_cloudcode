@@ -1,0 +1,82 @@
+@urlBase = https://parseapi.back4app.com
+@urlObjects = /parse/classes/
+
+@XParseParseApplicationId = x4uHx8hJECtAPiKo4Z2f8IK9OUKRtcuUBBaUBHM9
+@XParseRESTAPIKey = frnySy1R0hur1GkJPIrxoN6ucSZxuH3wdQzyUMEO
+
+@className = Address
+@id = BPiwAlE6Uc
+
+###
+# Cruld = create Address
+POST {{urlBase}}{{urlObjects}}{{className}}
+X-Parse-Application-Id: {{XParseParseApplicationId}}
+X-Parse-REST-API-Key: {{XParseRESTAPIKey}}
+Content-Type: application/json
+
+{
+  "name": "Bia"
+}
+###
+###
+# cruLd = list Addresss
+GET {{urlBase}}{{urlObjects}}{{className}}
+X-Parse-Application-Id: {{XParseParseApplicationId}}
+X-Parse-REST-API-Key: {{XParseRESTAPIKey}}
+###
+
+###
+# cRuld = read Address
+GET {{urlBase}}{{urlObjects}}{{className}}/{{id}}
+X-Parse-Application-Id: {{XParseParseApplicationId}}
+X-Parse-REST-API-Key: {{XParseRESTAPIKey}}
+###
+
+###
+# crUld = update Address
+PUT {{urlBase}}{{urlObjects}}{{className}}/{{id}}
+X-Parse-Application-Id: {{XParseParseApplicationId}}
+X-Parse-REST-API-Key: {{XParseRESTAPIKey}}
+Content-Type: application/json
+
+{
+  "man": false,
+  "birthday":{
+    "__type": "Date",
+    "iso": "2022-01-01T10:00:00.000Z"
+  },
+  "photo": {
+    "__type": "File",
+    "name": "f0ffe2c77670535bb1e046a5f2881ffb_image892.png",
+    "url": "https://parsefiles.back4app.com/x4uHx8hJECtAPiKo4Z2f8IK9OUKRtcuUBBaUBHM9/f0ffe2c77670535bb1e046a5f2881ffb_image892.png"
+  },      
+}
+###
+
+
+###
+# crUld = upload File to Address
+POST {{urlBase}}/parse/files/foto.png
+X-Parse-Application-Id: {{XParseParseApplicationId}}
+X-Parse-REST-API-Key: {{XParseRESTAPIKey}}
+Content-Type: text/plain
+
+< ./files/arquivo.txt
+###
+
+###
+# crUld = upload Image to Address
+POST {{urlBase}}/parse/files/foto.png
+X-Parse-Application-Id: {{XParseParseApplicationId}}
+X-Parse-REST-API-Key: {{XParseRESTAPIKey}}
+Content-Type: image/png
+
+< ./files/foto.png
+###
+
+###
+# crulD = delete Address
+DELETE {{urlBase}}{{urlObjects}}{{className}}/{{id}}
+X-Parse-Application-Id: {{XParseParseApplicationId}}
+X-Parse-REST-API-Key: {{XParseRESTAPIKey}}
+###

@@ -1,0 +1,61 @@
+@urlBase = https://parseapi.back4app.com
+@urlObjects = /parse/schemas/
+
+@XParseParseApplicationId = x4uHx8hJECtAPiKo4Z2f8IK9OUKRtcuUBBaUBHM9
+@XParseMasterKey = IGR0pcJ61Uo41dKpEpwOZusmYzn8OduyPZXBxkUA
+
+@className = Contact
+@id = BPiwAlE6Uc
+
+###
+# Cruld = create schema Contact
+POST {{urlBase}}{{urlObjects}}{{className}}
+X-Parse-Application-Id: {{XParseParseApplicationId}}
+X-Parse-Master-Key: {{XParseMasterKey}}
+Content-Type: application/json
+
+{
+  "name": "Bia"
+  2015-03-04T17:16:05+03:00
+}
+###
+###
+# cruLd = list all schemas
+GET {{urlBase}}{{urlObjects}}
+X-Parse-Application-Id: {{XParseParseApplicationId}}
+X-Parse-Master-Key: {{XParseMasterKey}}
+###
+
+###
+# cRuld = read schema Contact
+GET {{urlBase}}{{urlObjects}}{{className}}
+X-Parse-Application-Id: {{XParseParseApplicationId}}
+X-Parse-Master-Key: {{XParseMasterKey}}
+###
+
+###
+# crUld = update schema Contact
+#{{$datetime rfc1123|iso8601|"custom format"|'custom format' [offset option]}}
+#        "iso": "2022-04-14T21:56:00.000Z"
+#localDatetime
+PUT {{urlBase}}{{urlObjects}}{{className}}
+X-Parse-Application-Id: {{XParseParseApplicationId}}
+X-Parse-Master-Key: {{XParseMasterKey}}
+Content-Type: application/json
+
+{
+      "className": "Contact",
+      "fields": {
+        "teste": {
+          "__op": "Delete"
+        }
+      }
+}
+###
+
+###
+# crulD = delete schema Contact
+DELETE {{urlBase}}{{urlObjects}}{{className}}/{{id}}
+X-Parse-Application-Id: {{XParseParseApplicationId}}
+X-Parse-Master-Key: {{XParseMasterKey}}
+###

@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "_default": {
+      "link": "contactList01"
+    },
+    "contactList01": {
+      "applicationId": "x4uHx8hJECtAPiKo4Z2f8IK9OUKRtcuUBBaUBHM9"
+    }
+  }
+}
