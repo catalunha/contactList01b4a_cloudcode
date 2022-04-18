@@ -1,0 +1,83 @@
+@urlBase = https://parseapi.back4app.com
+@urlObjects = /functions
+
+@XParseParseApplicationId = x4uHx8hJECtAPiKo4Z2f8IK9OUKRtcuUBBaUBHM9
+@XParseRESTAPIKey = frnySy1R0hur1GkJPIrxoN6ucSZxuH3wdQzyUMEO
+@XParseSessionToken = r:4171a1218e45d25f8330eb84ed4fde2d
+
+@id = 7SQxjSuRHE
+
+
+###
+# contact-create
+POST {{urlBase}}{{urlObjects}}/contact-create
+X-Parse-Application-Id: {{XParseParseApplicationId}}
+X-Parse-REST-API-Key: {{XParseRESTAPIKey}}
+X-Parse-Session-Token: {{XParseSessionToken}}
+Content-Type: application/json
+
+{
+  "name":"dany (com user)"
+}
+###
+
+
+###
+# contact-upload -> (COM ERRO)
+POST {{urlBase}}{{urlObjects}}/contact-upload
+X-Parse-Application-Id: {{XParseParseApplicationId}}
+X-Parse-REST-API-Key: {{XParseRESTAPIKey}}
+Content-Type: application/json
+
+###
+
+
+###
+# contact-list
+POST {{urlBase}}{{urlObjects}}/contact-list
+X-Parse-Application-Id: {{XParseParseApplicationId}}
+X-Parse-REST-API-Key: {{XParseRESTAPIKey}}
+X-Parse-Session-Token: {{XParseSessionToken}}
+Content-Type: application/json
+
+{}
+###
+
+
+###
+# contact-read
+POST {{urlBase}}{{urlObjects}}/contact-read
+X-Parse-Application-Id: {{XParseParseApplicationId}}
+X-Parse-REST-API-Key: {{XParseRESTAPIKey}}
+Content-Type: application/json
+
+{
+  "id":"{{id}}"
+}
+###
+
+
+###
+# contact-update
+POST {{urlBase}}{{urlObjects}}/contact-update
+X-Parse-Application-Id: {{XParseParseApplicationId}}
+X-Parse-REST-API-Key: {{XParseRESTAPIKey}}
+Content-Type: application/json
+
+{
+  "id":"{{id}}",
+  "male":true
+}
+###
+
+###
+# contact-delete
+POST {{urlBase}}{{urlObjects}}/contact-delete
+X-Parse-Application-Id: {{XParseParseApplicationId}}
+X-Parse-REST-API-Key: {{XParseRESTAPIKey}}
+Content-Type: application/json
+
+{
+  "id":"{{id}}"
+}
+###

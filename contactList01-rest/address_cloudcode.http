@@ -1,0 +1,80 @@
+@urlBase = https://parseapi.back4app.com
+@urlObjects = /functions
+
+@XParseParseApplicationId = x4uHx8hJECtAPiKo4Z2f8IK9OUKRtcuUBBaUBHM9
+@XParseRESTAPIKey = frnySy1R0hur1GkJPIrxoN6ucSZxuH3wdQzyUMEO
+
+@id = 7SQxjSuRHE
+
+###
+# address-create
+POST {{urlBase}}{{urlObjects}}/address-create
+X-Parse-Application-Id: {{XParseParseApplicationId}}
+X-Parse-REST-API-Key: {{XParseRESTAPIKey}}
+Content-Type: application/json
+
+{
+  "cep":"77018416",
+  "description":"1003 Sul,...",
+  "city":"Palmas",
+  "state":"TO",
+  "contactId":"7SQxjSuRHE"
+}
+###
+
+
+###
+# ainda nao funcionando
+# contact-upload
+POST {{urlBase}}{{urlObjects}}/contact-upload
+X-Parse-Application-Id: {{XParseParseApplicationId}}
+X-Parse-REST-API-Key: {{XParseRESTAPIKey}}
+Content-Type: application/json
+
+###
+
+
+###
+# contact-list
+POST {{urlBase}}{{urlObjects}}/contact-list
+X-Parse-Application-Id: {{XParseParseApplicationId}}
+X-Parse-REST-API-Key: {{XParseRESTAPIKey}}
+###
+
+###
+# contact-read
+POST {{urlBase}}{{urlObjects}}/contact-read
+X-Parse-Application-Id: {{XParseParseApplicationId}}
+X-Parse-REST-API-Key: {{XParseRESTAPIKey}}
+Content-Type: application/json
+
+{
+  "id":"{{id}}"
+}
+###
+
+
+###
+# contact-update
+POST {{urlBase}}{{urlObjects}}/contact-update
+X-Parse-Application-Id: {{XParseParseApplicationId}}
+X-Parse-REST-API-Key: {{XParseRESTAPIKey}}
+Content-Type: application/json
+
+{
+  "id":"{{id}}",
+  "male":true
+}
+###
+
+###
+# contact-delete
+POST {{urlBase}}{{urlObjects}}/contact-delete
+X-Parse-Application-Id: {{XParseParseApplicationId}}
+X-Parse-REST-API-Key: {{XParseRESTAPIKey}}
+Content-Type: application/json
+
+{
+  "id":"{{id}}"
+}
+###
