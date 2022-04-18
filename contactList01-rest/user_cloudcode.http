@@ -3,7 +3,7 @@
 
 @XParseParseApplicationId = x4uHx8hJECtAPiKo4Z2f8IK9OUKRtcuUBBaUBHM9
 @XParseRESTAPIKey = frnySy1R0hur1GkJPIrxoN6ucSZxuH3wdQzyUMEO
-@XParseSessionToken = r:4171a1218e45d25f8330eb84ed4fde2d
+@XParseSessionToken = r:6ae86e4cd8501a8a00f310385a31f58c
 
 @id = 7SQxjSuRHE
 
@@ -36,7 +36,9 @@ Content-Type: application/json
 }
 ###
 ###
-# user-logout
+# user-logout 1
+# não funcionou o logout pelo cloud code.
+# 
 POST {{urlBase}}{{urlObjects}}/user-logout
 X-Parse-Application-Id: {{XParseParseApplicationId}}
 X-Parse-REST-API-Key: {{XParseRESTAPIKey}}
@@ -44,6 +46,19 @@ Content-Type: application/json
 
 {}
 ###
+
+
+###
+# user-logout 2
+POST {{urlBase}}/parse/logout
+X-Parse-Application-Id: {{XParseParseApplicationId}}
+X-Parse-REST-API-Key: {{XParseRESTAPIKey}}
+X-Parse-Session-Token: {{XParseSessionToken}}
+Content-Type: application/json
+
+{}
+###
+
 ###
 # user-current
 POST {{urlBase}}{{urlObjects}}/user-current

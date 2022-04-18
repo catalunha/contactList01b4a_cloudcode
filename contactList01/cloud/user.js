@@ -20,7 +20,7 @@ Parse.Cloud.define('user-current', async (req)=>{
   return {
     requser:req.user, 
     usercur:Parse.User.current(),
-    userauth:Parse.User.authenticated
+    // userauth:authenticated()
   };
   // let currentUser = req.user;
   // currentUser.setACL(new Parse.ACL(currentUser));
@@ -37,5 +37,7 @@ Parse.Cloud.define('user-login', async (req)=>{
 
 Parse.Cloud.define('user-logout',async (req)=>{
   const user = await Parse.User.logOut();
+  //parece que nao mata a session
+  //https://parseplatform.org/Parse-SDK-JS/api/v1.11.1/Parse.User.html
   return {user:user,msg:'user-logout: bem sucedido'};
 });
