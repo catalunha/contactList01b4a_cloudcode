@@ -8,20 +8,6 @@ Parse.Cloud.beforeDelete(Parse.User,async (req) => {
   await Parse.Object.destroyAll(results, {useMasterKey: true});
 });
 
-// Parse.Cloud.beforeDelete(Parse.User, async (req) => {
-//   console.log("beforeDelete: User ...");
-//   console.log("object: ", req.object);
-//   console.log("id: ", req.object.id);
-//   const query = new Parse.Query("Contact");
-//   query.equalTo("createdByUser", req.object);
-//   // let results = await query.find({ useMasterKey: true });
-//   query.find({ useMasterKey: true })
-//         .then((list)=>{Parse.Object.destroyAll(list,{ useMasterKey: true });})
-//         .catch((error) => {
-//             console.error("Error finding related Contact " + error.code + ": " + error.message);
-//           });
-// });
-
 //Funciona mas estou buscando uma forma mais otimizada.
 Parse.Cloud.beforeDelete("Contact", async (req) => {
   console.log("beforeDelete: Contact ...");
@@ -42,7 +28,7 @@ Parse.Cloud.beforeDelete("Contact", async (req) => {
       queryAddress.equalTo("objectId", address.id);
       // +++ Modo 01
       // queryAddress.find({ useMasterKey: true })
-//         .then((list)=>{Parse.Object.destroyAll(list,{ useMasterKey: true });})
+      //   .then((list)=>{Parse.Object.destroyAll(list,{ useMasterKey: true });})
       //   .catch((error) => {
         //     console.error("Error finding related Address " + error.code + ": " + error.message);
         //   });
