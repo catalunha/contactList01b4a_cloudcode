@@ -1,29 +1,65 @@
+
 Parse.Cloud.beforeDelete(Parse.User,async (req) => {
   console.log('beforeDelete: User ...');
   const query = new Parse.Query('Contact');
-  query.equalTo('createdByUser',req.object);
+  query.equalTo('createdByUser', req.object);
   let results = await query.find({useMasterKey:true});
-  for(let i=0;i<results.length;++i){
-    console.log(i);
-    console.log(results[i].objectId);
-    results[i].destroy({useMasterKey:true});
-  }
+    
+  await Parse.Object.destroyAll(results, {useMasterKey: true});
 });
 
-//Issue reported in https://help.back4app.com/hc/en-us/requests/25759
-//How to fetch all 'Contact' data before deleting. To get 'objectId' from the address and delete it.
-Parse.Cloud.beforeDelete("Contact", async  (req) => {
-  console.log('beforeDelete: Contact ...');
-  console.log('object: ',req.object);
-  console.log('id: ',req.object.id);
-  // const Contact = Parse.Object.extend('Contact');
-  const query = new Parse.Query(req.object);
-  console.log('query...');
-	const contact = await query.get(`${req.object.id}`);
-  console.log('contact...');
-  const address = contact.get("address");
-  console.log('address: ',address);
+// Parse.Cloud.beforeDelete(Parse.User, async (req) => {
+//   console.log("beforeDelete: User ...");
+//   console.log("object: ", req.object);
+//   console.log("id: ", req.object.id);
+//   const query = new Parse.Query("Contact");
+//   query.equalTo("createdByUser", req.object);
+//   // let results = await query.find({ useMasterKey: true });
+//   query.find({ useMasterKey: true })
+//         .then((list)=>{Parse.Object.destroyAll(list,{ useMasterKey: true });})
+//         .catch((error) => {
+//             console.error("Error finding related Contact " + error.code + ": " + error.message);
+//           });
+// });
 
-	// let result = await query.get(req.object.id);
-	// await result.destroy();
+//Funciona mas estou buscando uma forma mais otimizada.
+Parse.Cloud.beforeDelete("Contact", async (req) => {
+  console.log("beforeDelete: Contact ...");
+  console.log("object: ", req.object);
+  console.log("id: ", req.object.id);
+  console.log("query of Contact...");
+  const query = new Parse.Query('Contact');
+  query.equalTo("objectId", req.object.id);
+  const contactQuery = await query.find({ useMasterKey: true });
+  try {
+    for (const object of contactQuery) {
+      console.log("contactQuery...");
+      const address = object.get("address");
+      console.log("address: ", address);
+      console.log("id: ", address.id);
+      //Delete address to this contact
+      const queryAddress = new Parse.Query('Address');
+      queryAddress.equalTo("objectId", address.id);
+      // +++ Modo 01
+      // queryAddress.find({ useMasterKey: true })
+//         .then((list)=>{Parse.Object.destroyAll(list,{ useMasterKey: true });})
+      //   .catch((error) => {
+        //     console.error("Error finding related Address " + error.code + ": " + error.message);
+        //   });
+      // --- Modo 01
+      // +++ Modo 02
+      const resultsQueryAddress = await queryAddress.find({ useMasterKey: true });
+      try {
+        for (const object of resultsQueryAddress) {
+          console.log("destroying.id: ", object.id);
+          object.destroy();
+        }
+      } catch (error) {
+        console.error('Error while destroying Address'  + error.code + ": " + error.message);
+      }
+      // --- Modo 02
+    }
+  } catch (error) {
+    console.error('Error while fetching Contact'  + error.code + ": " + error.message);
+  }
 });
