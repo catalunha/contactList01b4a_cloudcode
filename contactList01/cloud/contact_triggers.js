@@ -8,10 +8,13 @@ Parse.Cloud.beforeDelete(Parse.User,async (req) => {
 });
 
 Parse.Cloud.beforeDelete("Contact", async (req) => {
-  console.log("beforeDelete: Contact ...");
+  console.log(`beforeDelete: Contact id: ${req.object.id}.`);
   let contact = req.object;
   const contactAddress = contact.get("address")
-  const address = new Parse.Object('Address');
-  address.id=contactAddress.id;
-  await address.destroy({ useMasterKey: true });
+  if(contactAddress===undefined){
+    console.log(`beforeDelete: Contact id: ${req.object.id}. Nao tem Address`);
+  }else{
+    console.log(`beforeDelete: Contact id: ${req.object.id}. TEM Address`);
+    contactAddress.destroy({useMasterKey:true});
+  }
 });
